@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: supplier_contracts
+  datasource:
+    url: jdbc:postgresql://localhost:5432/supplier_contracts
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+#    logging:
+#      level:
+#        org.hibernate: DEBUG
+
