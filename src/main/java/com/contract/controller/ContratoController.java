@@ -8,38 +8,38 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/fornecedores/{fornecedorId}/contratos")
-public class ContratoController {
+    @RestController
+    @RequestMapping("/fornecedores/{fornecedorId}/contratos")
+    public class ContratoController {
 
     @Autowired
     private ContratoService contratoService;
 
     @GetMapping
-    public List<Contrato> listarContratos(@PathVariable Long fornecedorId) {
-        return contratoService.listarContratos(String.valueOf(fornecedorId));
+    public List<Contrato> listarContratos(@PathVariable String fornecedorId) {
+        return contratoService.listarContratos(fornecedorId);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Contrato> buscarContrato(@PathVariable Long id) {
-        Contrato contrato = contratoService.buscarContrato(String.valueOf(id));
+    public ResponseEntity<Contrato> buscarContrato(@PathVariable String id) {
+        Contrato contrato = contratoService.buscarContrato(id);
         return contrato != null ? ResponseEntity.ok(contrato) : ResponseEntity.notFound().build();
     }
 
     @PostMapping
-    public Contrato criarContrato(@PathVariable Long fornecedorId, @RequestBody Contrato contrato) {
-        return contratoService.criarContrato(String.valueOf(fornecedorId), contrato);
+    public Contrato criarContrato(@PathVariable String fornecedorId, @RequestBody Contrato contrato) {
+        return contratoService.criarContrato(fornecedorId, contrato);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Contrato> atualizarContrato(@PathVariable Long id, @RequestBody Contrato contrato) {
-        Contrato updatedContrato = contratoService.atualizarContrato(String.valueOf(id), contrato);
+    public ResponseEntity<Contrato> atualizarContrato(@PathVariable String id, @RequestBody Contrato contrato) {
+        Contrato updatedContrato = contratoService.atualizarContrato(id, contrato);
         return ResponseEntity.ok(updatedContrato);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluirContrato(@PathVariable Long id) {
-        contratoService.excluirContrato(String.valueOf(id));
+    public ResponseEntity<Void> excluirContrato(@PathVariable String id) {
+        contratoService.excluirContrato(id);
         return ResponseEntity.noContent().build();
     }
 }

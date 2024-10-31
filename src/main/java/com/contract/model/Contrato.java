@@ -8,14 +8,14 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Getter
-@Setter
-@Entity
-@Table(name = "contrato")
-public class Contrato {
+    @Getter
+    @Setter
+    @Entity
+    @Table(name = "contrato")
+    public class Contrato {
 
     @Id
-    @Column(columnDefinition = "VARCHAR", unique = true, nullable = false)
+    @Column(columnDefinition = "VARCHAR", unique = false, nullable = false)
     private String id;
 
     private String numeroContrato;
@@ -33,16 +33,15 @@ public class Contrato {
     public Contrato() {
         this.id = UUID.randomUUID().toString();
     }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+        public void setId(String id) {
+            this.id = id;
+        }
 
     public void vincularFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
-
     public void atualizarStatusAtivo() {
         this.ativo = this.dataTermino != null && this.dataTermino.isAfter(LocalDate.now());
+        }
+
     }
-}

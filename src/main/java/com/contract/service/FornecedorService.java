@@ -46,3 +46,5 @@ public class FornecedorService {
         fornecedorRepository.deleteById(id);
     }
 }
+
+    // obss para não esquecer
