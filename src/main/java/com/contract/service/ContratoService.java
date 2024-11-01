@@ -6,6 +6,7 @@ import com.contract.repository.ContratoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -28,9 +29,34 @@ public class ContratoService {
         }
     }
 
-    public List<Contrato> listarContratos(String fornecedorId) {
+    public List<Contrato> listarContratos(String fornecedorId, LocalDate dataInicio) {
+        if (dataInicio != null) {
+            return contratoRepository.findByFornecedorIdAnddataInicio(fornecedorId, dataInicio);
+        }
         return contratoRepository.findByFornecedorId(fornecedorId);
     }
+
+    public List<Contrato> listarContratosdatatermino(String fornecedorId, LocalDate dataTermino) {
+        if (dataTermino != null) {
+            return contratoRepository.findByFornecedorIdAndfinaldata(fornecedorId, dataTermino);
+        }
+        return contratoRepository.findByFornecedorId(fornecedorId);
+    }
+
+    public List<Contrato> listarContratosAtivo(String fornecedorId, Boolean ativo) {
+        if (ativo != null) {
+            return contratoRepository.findBySupplierIdAndativo(fornecedorId, ativo);
+        }
+        return contratoRepository.findByFornecedorId(fornecedorId);
+    }
+
+    public List<Contrato> listarContratosDescricao(String fornecedorId, String descricao) {
+        if (descricao != null && !descricao.isEmpty()) {
+            return contratoRepository.findBySupplierIdAndDescricao(fornecedorId, descricao);
+        }
+        return contratoRepository.findByFornecedorId(fornecedorId);
+    }
+
 
     public Contrato buscarContrato(String id) {
         return contratoRepository.findById(id).orElse(null);

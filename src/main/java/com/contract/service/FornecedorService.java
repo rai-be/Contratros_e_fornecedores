@@ -15,33 +15,28 @@ public class FornecedorService {
     @Autowired
     private FornecedorRepository fornecedorRepository;
 
-    // Cria um novo fornecedor
     public Fornecedor criarFornecedor(Fornecedor fornecedor) {
         return fornecedorRepository.save(fornecedor);
     }
 
-    // Lista todos os fornecedores
     public List<Fornecedor> listarFornecedores() {
         return fornecedorRepository.findAll();
     }
 
-    // Busca um fornecedor pelo ID
     public Fornecedor buscarFornecedor(String id) {
         return fornecedorRepository.findById(id).orElse(null);
     }
 
-    // Atualiza um fornecedor existente
     public Fornecedor atualizarFornecedor(String id, Fornecedor fornecedor) {
         Optional<Fornecedor> fornecedorExistente = fornecedorRepository.findById(id);
         if (fornecedorExistente.isPresent()) {
-            fornecedor.setId(id);  // Mantém o mesmo ID
+            fornecedor.setId(id);
             return fornecedorRepository.save(fornecedor);
         } else {
-            return null; // Ou lança uma exceção caso não encontre o fornecedor
+            return null;
         }
     }
 
-    // Exclui um fornecedor pelo ID
     public void excluirFornecedor(String id) {
         fornecedorRepository.deleteById(id);
     }
