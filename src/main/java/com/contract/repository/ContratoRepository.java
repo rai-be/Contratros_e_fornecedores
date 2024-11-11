@@ -33,7 +33,13 @@ public interface ContratoRepository extends JpaRepository<Contrato, String> {
     List<Contrato> findBySupplierIdAndDescricao(
             @Param("fornecedorId") String fornecedorId,
             @Param("palavrachave") String palavrachave);
+
+//    @Query(value = "SELECT * FROM contrato WHERE data_termino < :dataTermino AND ativo = true", nativeQuery = true)
+//    List<Contrato> findByDataTerminoBeforeAndAtivoTrue
+//            (@Param("dataTermino") LocalDate dataTermino);
+
 }
+
 
 
 

@@ -3,14 +3,11 @@ package com.contract.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 import java.util.UUID;
 
-    @Getter
-    @Setter
+
     @Entity
     @Table(name = "fornecedor")
     public class Fornecedor {
